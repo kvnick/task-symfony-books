@@ -1,0 +1,49 @@
+{% extends 'app.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex justify-content-center align-items-center">
+            <h5 class="card-title mr-auto mb-0">{{ 'authors.list'|trans }}</h5>
+            <a href="{{ path('author_new') }}" class="btn btn-primary mr-2">{{ 'authors.add'|trans }}</a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-padding-sm table-hover border-0 m-0">
+                    <thead>
+                        <tr>
+                            <th>{{ 'author.fullname'|trans }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for author in pagination %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('author_edit', {'id': author.id}) }}">{{ author.fullname }}</a>
+                            </td>
+                            <td class="actions">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ path('author_edit', {'id': author.id}) }}" class="dropdown-item">{{ 'main.edit'|trans }}</a>
+                                        {{ include('author/_delete_form.html.twig', {'className': 'dropdown-item'}) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td class="text-center" colspan="5">{{ 'authors.no_records'|trans }}</td></tr>
+                  {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if pagination.pageCount > 1 %}
+            <div class="card-footer">
+                {{ knp_pagination_render(pagination, null, {}, {'align': 'center'}) }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

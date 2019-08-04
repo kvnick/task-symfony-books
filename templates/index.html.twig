@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Simple book catalog for task">
+        <title>{{ 'books.catalog'|trans }}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <!-- Header -->
+        {% include 'layout/header.html.twig' %}
+        <!-- Main -->
+        <main role="main">
+            {% block body %}{% endblock %}
+        </main>
+        <!-- Footer -->
+       {% include 'layout/footer.html.twig' %}
+       {% block scripts %}{% endblock %}
+    </body>
+</html>

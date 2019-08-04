@@ -1,0 +1,52 @@
+{% extends 'app.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex justify-content-center align-items-center">
+            <h5 class="card-title mr-auto mb-0">{{ book.name }}</h5>
+            <a href="{{ path('book_index') }}" class="btn btn-primary btn-xs mr-2">{{ 'main.back'|trans }}</a>
+            <a href="{{ path('book_edit', {'id': book.id}) }}" class="btn btn-primary btn-xs mr-2">{{ 'main.edit'|trans }}</a>
+            {{ include('book/_delete_form.html.twig', {'className': 'btn-danger'}) }}
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-padding-md m-0">
+                    <tbody>
+                        {% if book.cover %}
+                            <tr>
+                                <th>{{ 'book.cover'|trans }}</th>
+                                <td>
+                                    <img class="img-thumbnail" style="width: 200px" src="{{ asset('uploads/covers/' ~ book.cover) }} " alt="{{ book.name }}">
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>{{ 'book.name'|trans }}</th>
+                            <td>{{ book.name }}</td>
+                        </tr>
+                        {% if book.author %}
+                            <tr>
+                                <th>{{ 'book.author'|trans }}</th>
+                                <td><a href="{{ path('author_edit', {'id': book.author.id}) }}">{{ book.author.fullname }}</a></td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>{{ 'book.isbn'|trans }}</th>
+                            <td>{{ book.isbn }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'book.year'|trans }}</th>
+                            <td>{{ book.year }}</td>
+                        </tr>
+                        {% if book.count %}
+                            <tr>
+                                <th>{{ 'book.count'|trans }}</th>
+                                <td>{{ book.count }}</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

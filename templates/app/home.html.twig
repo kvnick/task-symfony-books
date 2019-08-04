@@ -1,0 +1,52 @@
+{% extends 'app.html.twig' %}
+
+{% block jumbotron %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">{{ 'books.latest'|trans }}</h1>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% for book in books %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-4 shadow-sm">
+                    {% if book.cover %}
+                        <img src="{{ asset('uploads/covers/' ~ book.cover) }}" class="book-card__image card-img-top" alt="{{ book.name }}">
+                    {% else %}
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('book_show', {'id': book.id}) }}">{{ book.name }}</a>
+                        </h5>
+                        <div class="card-info my-2">
+                            {% if book.author %}
+                                <div><b>{{ 'book.author'|trans }}:</b> {{ book.author.fullname }}</div>
+                            {% endif %}
+                            <div><b>{{ 'book.isbn'|trans }}:</b> {{ book.isbn }}</div>
+                            <div><b>{{ 'book.year'|trans }}:</b> {{ book.year }}</div>
+                            {% if book.count %}
+                                <div><b>{{ 'book.count'| trans }}:</b> {{ book.count }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ path('book_show', {'id': book.id}) }}" class="btn btn-outline-secondary" title="{{ 'main.show'|trans }}">
+                                    <i class="icon ion-md-eye"></i>
+                                </a>
+                                <a href="{{ path('book_edit', {'id': book.id}) }}" class="btn btn-outline-secondary" title="{{ 'main.edit'|trans }}">
+                                    <i class="icon ion-md-create"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">{{ 'books.no_records'|trans }}</div>
+        {% endfor %}
+    </div>
+{% endblock %}

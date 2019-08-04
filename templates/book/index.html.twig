@@ -1,0 +1,70 @@
+{% extends 'app.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex justify-content-center align-items-center">
+            <h5 class="card-title mr-auto mb-0">{{ 'books.list'|trans }}</h5>
+            <a href="{{ path('book_new') }}" class="btn btn-primary mr-2">{{ 'books.add'|trans }}</a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-padding-sm table-hover border-0 m-0">
+                    <thead>
+                        <tr>
+                            <th>{{ 'book.name'|trans }}</th>
+                            <th>{{ 'book.isbn'|trans }}</th>
+                            <th>{{ 'book.author'|trans }}</th>
+                            <th>{{ 'book.year'|trans }}</th>
+                            <th>{{ 'book.pages'|trans }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in pagination %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('book_show', {'id': book.id}) }}">{{ book.name }}</a>
+                            </td>
+                            <td>{{ book.isbn }}</td>
+                            <td>
+                                {% if book.author %}
+                                    <a href="{{ path('author_edit', {'id': book.author.id}) }}">{{ book.author.fullname }}
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>{{ book.year }}</td>
+                            <td>
+                                {% if book.count %}
+                                    {{ book.count }}
+                                {% else %}
+                                    <span>-</span>
+                                {% endif %}
+                            </td>
+                            <td class="actions">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ path('book_edit', {'id': book.id}) }}" class="dropdown-item">{{ 'main.edit'|trans }}</a>
+                                        <a href="{{ path('book_show', {'id': book.id}) }}" class="dropdown-item">{{ 'main.show'|trans }}</a>
+                                        {{ include('book/_delete_form.html.twig', {'className': 'dropdown-item'}) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="5" class="text-center">{{ 'books.no_records'|trans }}</td></tr>
+                  {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if pagination.pageCount > 1 %}
+            <div class="card-footer">
+                {{ knp_pagination_render(pagination, null, {}, {'align': 'center'}) }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+

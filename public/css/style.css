@@ -1,0 +1,120 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.jumbotron {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron-heading {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+table.table thead tr:first-child th,
+table.table thead tr:first-child td {
+    border-bottom: 0;
+    background: rgba(0,0,0,.03);
+}
+
+table.table td{
+    vertical-align: middle;
+}
+
+table td.actions,
+table th.actions {
+    text-align: right;
+}
+
+table td.actions .btn-sm {
+    padding: 1px 5px;
+}
+
+table.table.table-padding-md tr td,
+table.table.table-padding-md tr th {
+    padding: 15px
+}
+
+table.table.table-padding-md tr td:first-child,
+table.table.table-padding-md tr th:first-child {
+    padding-left: 20px
+}
+
+table.table.table-padding-md tr td:last-child,
+table.table.table-padding-md tr th:last-child {
+    padding-right: 20px
+}
+
+table.table.table-padding-sm tr td,
+table.table.table-padding-sm tr th {
+    padding: 10px;
+}
+
+table.table.table-padding-sm tr td:first-child,
+table.table.table-padding-sm tr th:first-child {
+    padding-left: 15px
+}
+
+table.table.table-padding-sm tr td:last-child,
+table.table.table-padding-sm tr th:last-child {
+    padding-right: 15px
+}
+
+.card-body.p-0 table tr:first-child th,
+.card-body.p-0 table tr:first-child td {
+    border-top: 0;
+}
+
+form label.required::after {
+    color: #d72727;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 17px;
+    padding-top: 0;
+    vertical-align: middle;
+    padding-left: 3px;
+    content: "*";
+}
+
+
+.book-card__image {
+    height: 225px;
+    object-fit: cover;
+}
+
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+footer p {
+    margin-bottom: .25rem;
+}

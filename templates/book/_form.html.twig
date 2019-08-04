@@ -1,0 +1,107 @@
+{{ form_start(form, {'attr': {'novalidate': 'noinvalidate'}}) }}
+
+    {% if form.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group row">
+                {{ form_label(form.name, '', {
+                    'label_attr': {'class': 'col-sm-3 col-form-label'}
+                }) }}
+                <div class="col-sm-9">
+                    {% set nameInputClassName = 'form-control' %}
+                    {% if form.name.vars.errors|length > 0 %}
+                        {% set nameInputClassName = 'form-control is-invalid' %}
+                    {% endif %}
+                    {{ form_widget(form.name, {attr: {'class': nameInputClassName }}) }}
+                    {% if form.name.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">{{ form_errors(form.name) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {{ form_label(form.isbn, '', {
+                    'label_attr': {'class': 'col-sm-3 col-form-label'}
+                }) }}
+                <div class="col-sm-9">
+                    {% set isbnInputClassName = 'form-control' %}
+                    {% if form.isbn.vars.errors|length > 0 %}
+                        {% set isbnInputClassName = 'form-control is-invalid' %}
+                    {% endif %}
+                    {{ form_widget(form.isbn, {attr: {'class': isbnInputClassName }}) }}
+                    {% if form.isbn.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">{{ form_errors(form.isbn) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {{ form_label(form.year, '', {
+                    'label_attr': {'class': 'col-sm-3 col-form-label'}
+                }) }}
+                <div class="col-sm-9">
+                    {% set yearInputClassName = 'form-control' %}
+                    {% if form.year.vars.errors|length > 0 %}
+                        {% set yearInputClassName = 'form-control is-invalid' %}
+                    {% endif %}
+                    {{ form_widget(form.year, {attr: {'class': yearInputClassName }}) }}
+                    {% if form.year.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">{{ form_errors(form.year) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {{ form_label(form.count, '', {
+                    'label_attr': {'class': 'col-sm-3 col-form-label'}
+                }) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.count, {attr: {'class': 'form-control'}}) }}
+                    <div class="invalid-feedback">{{ form_errors(form.count) }}</div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {{ form_label(form.author, '', {
+                    'label_attr': {'class': 'col-sm-3 col-form-label'}
+                }) }}
+                <div class="col-sm-9">
+                    {% set authorInputClassName = 'form-control' %}
+                    {% if form.author.vars.errors|length > 0 %}
+                        {% set authorInputClassName = 'form-control is-invalid' %}
+                    {% endif %}
+                    {{ form_widget(form.author, {attr: {'class': authorInputClassName }}) }}
+                    {% if form.author.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">{{ form_errors(form.author) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                 {{ form_label(form.cover, '', {
+                    'label_attr': {
+                        'class': 'col-sm-3 col-form-label',
+                    }
+                }) }}
+                <div class="col-sm-9">
+                    <div class="custom-file">
+                        {{ form_widget(form.cover, {
+                            attr: {
+                                'class': 'custom-file-input',
+                            },
+                            id: 'book_cover_file'
+                        }) }}
+                        <label class="custom-file-label" for="book_cover_file">{{ 'book.choose_file'|trans }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">{{ button_label|default('main.save')|trans }}</button>
+{{ form_end(form) }}
