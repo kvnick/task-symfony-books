@@ -1,5 +1,7 @@
 # Simple Symfony books application
 
+## [Demo](http://symfony-books.nkorostelev.ru)
+
 **Make sure that you have ```composer``` globally installed**
 
 ## Start
